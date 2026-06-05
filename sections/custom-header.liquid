@@ -1,0 +1,121 @@
+{{ 'custom-header.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-header.js' | asset_url }}" defer></script>
+
+<header class="custom-header" style="
+  --header-bg: {{ section.settings.header_bg }};
+  --text-color: {{ section.settings.text_color }};
+  --btn-bg: {{ section.settings.button_bg }};
+  --btn-text: {{ section.settings.button_text_color }};
+">
+
+  <div class="custom-header__inner">
+
+    <!-- MOBILE HAMBURGER -->
+    <button class="custom-header__hamburger" aria-label="Menu">
+      ☰
+    </button>
+
+    <!-- BRAND -->
+    <div class="custom-header__left">
+      <a href="/" class="custom-header__brand">
+        {{ section.settings.brand_name }}
+      </a>
+    </div>
+
+    <!-- CENTER -->
+    <div class="custom-header__center">
+      {{ section.settings.promo_text }}
+    </div>
+
+    <!-- CTA -->
+    <div class="custom-header__right">
+      <a href="{{ section.settings.cta_link }}" class="custom-header__cta">
+        {{ section.settings.cta_text }}
+      </a>
+    </div>
+
+  </div>
+
+  <!-- DROPDOWN MENU -->
+  <div class="custom-header__drawer">
+
+    <div class="custom-header__drawer-promo">
+      {{ section.settings.promo_text }}
+    </div>
+
+    <nav class="custom-header__drawer-nav">
+      {{ section.settings.mobile_menu_links }}
+    </nav>
+
+    <a href="{{ section.settings.cta_link }}" class="custom-header__drawer-cta">
+      {{ section.settings.cta_text }}
+    </a>
+
+  </div>
+
+</header>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand Name",
+      "default": "Brand"
+    },
+    {
+      "type": "text",
+      "id": "promo_text",
+      "label": "Promo Text",
+      "default": "Free shipping on orders over $100"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "header_bg",
+      "label": "Header Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_bg",
+      "label": "Button Background",
+      "default": "#000000"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button Text Color",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}

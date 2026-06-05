@@ -1,0 +1,150 @@
+.custom-banner {
+position: relative;
+min-height: 700px;
+width: 100%;
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+}
+
+.custom-banner__overlay {
+    display: block !important;
+position: absolute;
+inset: 0;
+background-color: var(--overlay-color);
+opacity: var(--overlay-opacity);
+z-index: 1;
+}
+
+.custom-banner__content {
+position: relative;
+z-index: 2;
+
+height: 700px;
+display: flex;
+flex-direction: column;
+justify-content: flex-end;
+align-items: flex-start;
+
+padding: 60px;
+max-width: 1440px;
+margin: 0 auto;
+}
+
+.custom-banner__text-wrapper {
+max-width: 550px;
+}
+
+.custom-banner__heading {
+margin: 0 0 16px;
+color: var(--heading-color);
+font-size: 56px;
+font-weight: 700;
+line-height: 1.1;
+}
+
+.custom-banner__description {
+margin-bottom: 24px;
+color: var(--description-color);
+font-size: 18px;
+line-height: 1.6;
+}
+
+.custom-banner__button {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+
+min-width: 180px;
+padding: 14px 32px;
+
+background-color: var(--button-bg);
+color: var(--button-color);
+
+text-decoration: none;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+
+transition: all 0.3s ease;
+}
+
+.custom-banner__button:hover {
+transform: translateY(-2px);
+opacity: 0.9;
+}
+
+.custom-banner__button:focus {
+outline: 2px solid currentColor;
+outline-offset: 4px;
+}
+
+.custom-banner__strip {
+position: relative;
+z-index: 2;
+
+width: 100%;
+min-height: 56px;
+
+background-color: var(--strip-bg);
+color: var(--strip-color);
+
+display: flex;
+align-items: center;
+justify-content: center;
+
+padding: 12px 24px;
+
+text-align: center;
+font-size: 14px;
+font-weight: 600;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+}
+
+/* Mobile */
+
+@media screen and (max-width: 749px) {
+.custom-banner {
+min-height: 500px;
+}
+
+.custom-banner__content {
+height: 500px;
+
+```
+padding: 24px;
+
+justify-content: space-between;
+align-items: flex-start;
+```
+
+}
+
+.custom-banner__text-wrapper {
+margin-top: 24px;
+}
+
+.custom-banner__heading {
+font-size: 36px;
+margin-bottom: 12px;
+}
+
+.custom-banner__description {
+font-size: 16px;
+margin-bottom: 0;
+}
+
+.custom-banner__button {
+width: 100%;
+max-width: 100%;
+margin-bottom: 24px;
+}
+
+.custom-banner__strip {
+min-height: 48px;
+padding: 10px 16px;
+font-size: 12px;
+}
+}

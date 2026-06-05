@@ -1,0 +1,127 @@
+{{ 'custom-grid.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'custom-grid.js' | asset_url }}" defer></script>
+
+<section class="custom-product-grid">
+
+  <div class="product-grid">
+
+{% for block in section.blocks %}
+  {% assign product = block.settings.product %}
+
+  {% if product %}
+    <div
+      class="product-grid__item"
+      data-product-id="{{ product.id }}"
+      data-title="{{ product.title | escape }}"
+      data-price="{{ product.price }}"
+      data-description="{{ product.description | escape }}"
+      data-image="{{ product.featured_image | image_url: width: 1200 }}"
+      data-variants='[
+        {% for variant in product.variants %}
+          {
+            "id": {{ variant.id }},
+            "title": {{ variant.title | json }},
+            "option1": {{ variant.option1 | json }},
+            "option2": {{ variant.option2 | json }},
+            "available": {{ variant.available | json }}
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]'
+    >
+
+      <button class="product-hotspot" type="button">
+        +
+      </button>
+
+      <img
+        src="{{ product.featured_image | image_url: width: 1000 }}"
+        alt="{{ product.title }}"
+        loading="lazy"
+      >
+    </div>
+  {% endif %}
+{% endfor %}
+
+  </div>
+
+  <div class="product-popup" id="product-popup">
+
+    <div class="product-popup__overlay"></div>
+
+    <div class="product-popup__content">
+
+      <button class="popup-close">
+        ×
+      </button>
+
+      <div class="popup-top">
+
+        <div class="popup-image">
+          <img id="popup-image" src="" alt="">
+        </div>
+
+        <div class="popup-info">
+
+          <h2 id="popup-title"></h2>
+
+          <div id="popup-price"></div>
+
+          <div id="popup-description"></div>
+
+        </div>
+
+      </div>
+
+      <div class="popup-options">
+
+        <div class="option-group">
+          <label>Color</label>
+
+          <div id="color-options"></div>
+        </div>
+
+        <div class="option-group">
+          <label>Size</label>
+
+          <select id="size-options"></select>
+        </div>
+
+      </div>
+
+      <button
+        class="popup-add-to-cart"
+        id="add-to-cart-btn"
+      >
+        ADD TO CART
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Custom Product Grid",
+  "max_blocks": 6,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Product Grid"
+    }
+  ]
+}
+{% endschema %}

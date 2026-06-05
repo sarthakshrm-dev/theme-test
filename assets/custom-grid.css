@@ -1,0 +1,163 @@
+.custom-product-grid {
+  padding: 60px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.product-grid__item {
+  position: relative;
+  aspect-ratio: 16 / 9; /* horizontal rectangle */
+  overflow: hidden;
+}
+
+.product-grid__item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hotspot */
+.product-hotspot {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #000;
+  font-size: 28px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Popup */
+.product-popup {
+  display: none;
+}
+
+.product-popup.active {
+  display: block;
+}
+
+.product-popup__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  z-index: 999;
+}
+
+.product-popup__content {
+  position: fixed;
+  width: 700px;
+  max-width: 95%;
+  background: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  z-index: 1000;
+}
+
+.popup-top {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  gap: 30px;
+}
+
+.popup-image img {
+  width: 100%;
+}
+
+#popup-title {
+  margin-bottom: 20px;
+}
+
+#popup-price {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+#popup-description {
+  line-height: 1.6;
+}
+
+.option-group {
+  margin-top: 25px;
+}
+
+#color-options {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.color-btn {
+  border: 1px solid #000;
+  background: #fff;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-circle {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+#size-options {
+  width: 100%;
+  padding: 12px;
+}
+
+.popup-add-to-cart {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 18px;
+  margin-top: 30px;
+  cursor: pointer;
+}
+
+.popup-close {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  border: none;
+  background: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* Tablet */
+@media (max-width: 990px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .product-grid__item {
+    aspect-ratio: 3 / 2;
+  }
+
+  .popup-top {
+    grid-template-columns: 1fr;
+  }
+}

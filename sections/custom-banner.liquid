@@ -1,0 +1,179 @@
+{{ 'custom-banner.css' | asset_url | stylesheet_tag }}
+
+<section
+  class="custom-banner"
+  style="
+    --overlay-color: {{ section.settings.overlay_color }};
+    --overlay-opacity: {{ section.settings.overlay_opacity | times: 0.01 }};
+    --heading-color: {{ section.settings.heading_color }};
+    --description-color: {{ section.settings.description_color }};
+    --button-bg: {{ section.settings.button_bg_color }};
+    --button-color: {{ section.settings.button_text_color }};
+    --strip-bg: {{ section.settings.strip_bg_color }};
+    --strip-color: {{ section.settings.strip_text_color }};
+    background-image: url('{{ section.settings.background_image | image_url: width: 2000 }}');
+  "
+>
+  <div class="custom-banner__overlay"></div>
+
+  <div class="custom-banner__content">
+    <div class="custom-banner__text-wrapper">
+      {% if section.settings.heading != blank %}
+        <h1 class="custom-banner__heading">
+          {{ section.settings.heading }}
+        </h1>
+      {% endif %}
+
+      {% if section.settings.description != blank %}
+        <div class="custom-banner__description">
+          {{ section.settings.description }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if section.settings.button_text != blank %}
+      <a
+        href="{{ section.settings.button_link }}"
+        class="custom-banner__button"
+      >
+        {{ section.settings.button_text }}
+      </a>
+    {% endif %}
+  </div>
+
+  {% if section.settings.strip_text != blank %}
+    <div class="custom-banner__strip">
+      {{ section.settings.strip_text }}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Custom Banner",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+  {
+    "type": "header",
+    "content": "Banner Content"
+  },
+  {
+    "type": "image_picker",
+    "id": "background_image",
+    "label": "Background Image"
+  },
+  {
+    "type": "image_picker",
+    "id": "mobile_background_image",
+    "label": "Mobile Background Image"
+  },
+  {
+    "type": "text",
+    "id": "heading",
+    "label": "Heading",
+    "default": "Winter Collection"
+  },
+  {
+    "type": "textarea",
+    "id": "description",
+    "label": "Description",
+    "default": "Discover our latest collection with premium quality products."
+  },
+  {
+    "type": "text",
+    "id": "button_text",
+    "label": "Button Text",
+    "default": "SHOP NOW"
+  },
+  {
+    "type": "url",
+    "id": "button_link",
+    "label": "Button Link"
+  },
+
+  {
+    "type": "header",
+    "content": "Text Colors"
+  },
+  {
+    "type": "color",
+    "id": "heading_color",
+    "label": "Heading Color",
+    "default": "#ffffff"
+  },
+  {
+    "type": "color",
+    "id": "description_color",
+    "label": "Description Color",
+    "default": "#ffffff"
+  },
+
+  {
+    "type": "header",
+    "content": "Button Styling"
+  },
+  {
+    "type": "color",
+    "id": "button_bg_color",
+    "label": "Button Background Color",
+    "default": "#000000"
+  },
+  {
+    "type": "color",
+    "id": "button_text_color",
+    "label": "Button Text Color",
+    "default": "#ffffff"
+  },
+
+  {
+    "type": "header",
+    "content": "Overlay"
+  },
+  {
+    "type": "color",
+    "id": "overlay_color",
+    "label": "Overlay Color",
+    "default": "#000000"
+  },
+  {
+    "type": "range",
+    "id": "overlay_opacity",
+    "label": "Overlay Opacity",
+    "min": 0,
+    "max": 100,
+    "step": 5,
+    "unit": "%",
+    "default": 30
+  },
+
+  {
+    "type": "header",
+    "content": "Bottom Strip"
+  },
+  {
+    "type": "text",
+    "id": "strip_text",
+    "label": "Strip Text",
+    "default": "Free shipping on all orders over $100"
+  },
+  {
+    "type": "color",
+    "id": "strip_bg_color",
+    "label": "Strip Background Color",
+    "default": "#000000"
+  },
+  {
+    "type": "color",
+    "id": "strip_text_color",
+    "label": "Strip Text Color",
+    "default": "#ffffff"
+  }
+],
+  "presets": [
+    {
+      "name": "Custom Banner"
+    }
+  ]
+}
+{% endschema %}
