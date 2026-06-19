@@ -144,7 +144,7 @@
     "blocks": {
       "3057852920884765611": {
         "type": "shopify://apps/aitest/blocks/chat-widget/019e64e9-964b-7fc7-98e6-769f08d62b10",
-        "disabled": true,
+        "disabled": false,
         "settings": {
           "agent_id": "agent_fab4444e27b58592"
         }
